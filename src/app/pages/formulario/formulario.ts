@@ -41,7 +41,7 @@ export class Formulario implements OnInit {
   criarFormulario(): void {
     if(this.tipo === 'investigador') {
       this.formulario = this.fb.group({
-        titulo: ['', [Validators.required, Validators.minLength(3)]],
+        nome: ['', [Validators.required, Validators.minLength(3)]],
         email: ['', [Validators.required, Validators.email]],
         especialidade: ['', Validators.required],
         activo: [true, Validators.required],
@@ -158,6 +158,10 @@ export class Formulario implements OnInit {
     if (this.tipo === 'equipamento') this.router.navigate(['equipamentos']);
   }
 
-
+  terminalErros(campo: string, erro: string): boolean {
+    const control = this.formulario.get(campo);
+    return !! (control?.hasError(erro) && control?.touched);
+  }
 }
+
 
