@@ -1,0 +1,84 @@
+<div class = 'pagina'>
+
+  <div class = 'cabecalho'>
+    <h1>🔧 Equipamentos</h1>
+    <a routerLink="/formulario/equipamento" class="btn-adicionar">
+      + Adicionar Equipamento
+    </a>
+  </div>
+
+  <div class="filtros">
+    <input
+    type ='text'
+    placeholder="🔍 Pesquisar por nome ou tipo ou localizacao..."
+    [value]="termoPesquisa"
+    (input)="termoPesquisa = $any($event.target).value; aplicarFiltros()"
+    class="input-pesquisa"
+    />
+
+    <select
+      [value]="filtroEstado"
+      (change)="filtroEstado = $any($event.target).value; aplicarFiltros()"
+      class="select-filtro"
+    >
+      <option value="todos">Todos os Estados</option>
+      <option value="Disponivel">Disponível</option>
+      <option value="Em manutencao">Em manutenção</option>
+      <option value="Em uso">Em uso</option>
+    </select>
+
+    <select
+      [value]="ordenacao"
+      (change)="ordenacao = $any($event.target).value; aplicarFiltros()"
+      class="select-filtro"
+    >
+      <option value="nome">Ordenar por Nome</option>
+      <option value="tipo">Ordenar por Tipo</option>
+      <option value="localizacao">Ordenar por Localização</option>
+    </select>
+
+  </div>
+
+  <div class = "lista">
+    @for (equip of equipamentosFiltrados; track equip.id) {
+      <div class="card" [class.diponivel]="equip.estado === 'Disponível'"
+                        [class.em-manutencao]="equip.estado === 'Em manutenção'"
+                        [class.em-uso]="equip.estado === 'Em uso'">
+
+        <div class="card-topo">
+          <h3>{{ equip.nome }}</h3>
+          <span class="badge"
+            [class.badge-disponivel]="equip.estado === 'Disponível'"
+            [class.badge-em-manutencao]="equip.estado === 'Em manutenção'"
+            [class.badge-em-uso]="equip.estado === 'Em uso'">
+            {{ equip.estado | status }}
+          </span>
+        </div>
+
+
+        <p> ⚙️ {{ equip.tipo }}</p>
+        <p> 📍 {{ equip.localizacao }}</p>
+
+        <div class="card-acoes">
+          <a [routerLink]="['/detalhe', 'equipamento', equip.id]" class="btn-ver">
+            Ver Detalhe
+          </a>
+          <a [routerLink]="['/formulario', 'equipamento', equip.id]" class="btn-editar">
+            Editar
+          </a>
+          <button (click)="apagar(equip.id)" class="btn-apagar">
+            Apagar
+          </button>
+        </div>
+
+      </div>
+    }
+
+     @if (equipamentosFiltrados.length === 0) {
+      <p class="sem-resultados">Nenhum equipamento encontrado.</p>
+    }
+
+  </div>
+
+
+</div>

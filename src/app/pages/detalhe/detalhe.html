@@ -1,0 +1,154 @@
+<div class="pagina">
+
+  @if (!item) {
+    <div class="nao-encontrado">
+      <p>❌ Item não encontrado.</p>
+      <a routerLink="/dashboard" class="btn-voltar">Voltar ao Dashboard</a>
+    </div>
+  }
+
+  <!-- DETALHE DE INVESTIGADOR -->
+  @if (investigador) {
+    <div class="cabecalho">
+      <div>
+        <h1>👨‍🔬 {{ investigador.nome }}</h1>
+        <span class="badge" [class.badge-activo]="investigador.activo" [class.badge-inativo]="!investigador.activo">
+          {{ investigador.activo ? '🟢 Ativo' : '🔴 Inativo' }}
+        </span>
+      </div>
+      <div class="acoes">
+        <a [routerLink]="['/formulario', 'investigador', investigador.id]" class="btn-editar">
+          ✏️ Editar
+        </a>
+        <a routerLink="/investigadores" class="btn-voltar">
+          ← Voltar
+        </a>
+      </div>
+    </div>
+
+    <div class="detalhe-grid">
+      <div class="detalhe-card">
+        <h2>Informações Pessoais</h2>
+        <div class="campo">
+          <span class="campo-label">Nome</span>
+          <span class="campo-valor">{{ investigador.nome }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Email</span>
+          <span class="campo-valor">{{ investigador.email }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Especialidade</span>
+          <span class="campo-valor">{{ investigador.especialidade }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Estado</span>
+          <span class="campo-valor">{{ investigador.activo ? 'Ativo' : 'Inativo' }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Data de Registo</span>
+          <span class="campo-valor">{{ investigador.dataCriacao | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- DETALHE DE PROJETO -->
+  @if (projeto) {
+    <div class="cabecalho">
+      <div>
+        <h1>📋 {{ projeto.titulo }}</h1>
+        <span class="badge"
+          [class.badge-em-curso]="projeto.estado === 'Em curso'"
+          [class.badge-concluido]="projeto.estado === 'Concluído'"
+          [class.badge-pausado]="projeto.estado === 'Em pausa'">
+          {{ projeto.estado | status }}
+        </span>
+      </div>
+      <div class="acoes">
+        <a [routerLink]="['/formulario', 'projeto', projeto.id]" class="btn-editar">
+          ✏️ Editar
+        </a>
+        <a routerLink="/projetos" class="btn-voltar">
+          ← Voltar
+        </a>
+      </div>
+    </div>
+
+    <div class="detalhe-grid">
+      <div class="detalhe-card">
+        <h2>Informações do Projeto</h2>
+        <div class="campo">
+          <span class="campo-label">Título</span>
+          <span class="campo-valor">{{ projeto.titulo }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Área</span>
+          <span class="campo-valor">{{ projeto.area }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Descrição</span>
+          <span class="campo-valor">{{ projeto.descricao }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Estado</span>
+          <span class="campo-valor">{{ projeto.estado | status }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Data de Início</span>
+          <span class="campo-valor">{{ projeto.dataInicio | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- DETALHE DE EQUIPAMENTO -->
+  @if (equipamento) {
+    <div class="cabecalho">
+      <div>
+        <h1>🔧 {{ equipamento.nome }}</h1>
+        <span class="badge"
+          [class.badge-disponivel]="equipamento.estado === 'Disponível'"
+          [class.badge-em-uso]="equipamento.estado === 'Em uso'"
+          [class.badge-manutencao]="equipamento.estado === 'Em manutenção'">
+          {{ equipamento.estado | status }}
+        </span>
+      </div>
+      <div class="acoes">
+        <a [routerLink]="['/formulario', 'equipamento', equipamento.id]" class="btn-editar">
+          ✏️ Editar
+        </a>
+        <a routerLink="/equipamentos" class="btn-voltar">
+          ← Voltar
+        </a>
+      </div>
+    </div>
+
+    <div class="detalhe-grid">
+      <div class="detalhe-card">
+        <h2>Informações do Equipamento</h2>
+        <div class="campo">
+          <span class="campo-label">Nome</span>
+          <span class="campo-valor">{{ equipamento.nome }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Tipo</span>
+          <span class="campo-valor">{{ equipamento.tipo }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Estado</span>
+          <span class="campo-valor">{{ equipamento.estado | status }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Localização</span>
+          <span class="campo-valor">{{ equipamento.localizacao }}</span>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Data de Aquisição</span>
+          <span class="campo-valor">{{ equipamento.dataAquisicao | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

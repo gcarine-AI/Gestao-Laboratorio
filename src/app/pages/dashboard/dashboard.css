@@ -1,0 +1,101 @@
+.dashboard h1 {
+  font-size: 2rem;
+  color: #1a365d;
+  margin-bottom: 0.25rem;
+}
+
+.subtitulo {
+  color: #718096;
+  margin-bottom: 2rem;
+}
+
+/* ── KPIs ── */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.kpi {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 5px solid;
+}
+
+.kpi.azul  { border-color: #3182ce; }
+.kpi.verde { border-color: #38a169; }
+.kpi.laranja { border-color: #dd6b20; }
+.kpi.roxo  { border-color: #805ad5; }
+
+.kpi-icone {
+  font-size: 2.5rem;
+}
+
+.kpi-valor {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+/* ── ÚLTIMO ITEM ── */
+.ultimo-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ultimo-item h2 {
+  margin-bottom: 1rem;
+  color: #1a365d;
+}
+
+.item-card {
+  background: #f7fafc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.item-card p {
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+/* ── ATALHOS ── */
+.atalhos h2 {
+  color: #1a365d;
+  margin-bottom: 1rem;
+}
+
+.atalhos-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.atalho {
+  background: #2b6cb0;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.atalho:hover {
+  background: #1a365d;
+}

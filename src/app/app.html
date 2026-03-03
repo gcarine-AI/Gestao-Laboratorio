@@ -1,0 +1,37 @@
+<div class="app-container">
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      🔬 <span>LabGestão</span>
+    </div>
+    <ul class="navbar-links">
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="ativo">
+          🏠 Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/investigadores" routerLinkActive="ativo">
+          👨‍🔬 Investigadores
+        </a>
+      </li>
+      <li>
+        <a routerLink="/projetos" routerLinkActive="ativo">
+          📋 Projetos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/equipamentos" routerLinkActive="ativo">
+          🔧 Equipamentos
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="conteudo">
+    <router-outlet />
+  </main>
+
+</div>
+
+

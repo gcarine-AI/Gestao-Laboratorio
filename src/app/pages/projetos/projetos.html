@@ -1,0 +1,81 @@
+<div class="pagina">
+
+  <div class="cabecalho">
+    <h1>📋 Projetos</h1>
+    <a routerLink="/formulario/projeto" class="btn-adicionar">
+      + Adicionar Projeto
+    </a>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros">
+    <input
+      type="text"
+      placeholder="🔍 Pesquisar por título ou área..."
+      [value]="termoPesquisa"
+      (input)="termoPesquisa = $any($event.target).value; aplicarFiltros()"
+      class="input-pesquisa"
+    />
+
+    <select
+      [value]="filtroEstado"
+      (change)="filtroEstado = $any($event.target).value; aplicarFiltros()"
+      class="select-filtro"
+    >
+      <option value="todos">Todos os Estados</option>
+      <option value="Em curso">Em Curso</option>
+      <option value="Concluído">Concluído</option>
+      <option value="Pausado">Pausado</option>
+    </select>
+
+    <select
+      [value]="ordenacao"
+      (change)="ordenacao = $any($event.target).value; aplicarFiltros()"
+      class="select-filtro"
+    >
+      <option value="titulo">Ordenar por Título</option>
+      <option value="area">Ordenar por Área</option>
+    </select>
+  </div>
+
+  <!-- LISTA -->
+  <div class="lista">
+    @for (proj of projetosFiltrados; track proj.id) {
+      <div class="card" [class.em-curso]="proj.estado === 'Em curso'"
+                        [class.concluido]="proj.estado === 'Concluído'"
+                        [class.pausado]="proj.estado === 'Em pausa'">
+
+        <div class="card-topo">
+          <h3>{{ proj.titulo }}</h3>
+          <span class="badge"
+            [class.badge-em-curso]="proj.estado === 'Em curso'"
+            [class.badge-concluido]="proj.estado === 'Concluído'"
+            [class.badge-pausado]="proj.estado === 'Em pausa'">
+            {{ proj.estado | status }}
+          </span>
+        </div>
+
+        <p>🔬 {{ proj.area }}</p>
+        <p>📝 {{ proj.descricao }}</p>
+
+        <div class="card-acoes">
+          <a [routerLink]="['/detalhe', 'projeto', proj.id]" class="btn-ver">
+            Ver Detalhe
+          </a>
+          <a [routerLink]="['/formulario', 'projeto', proj.id]" class="btn-editar">
+            Editar
+          </a>
+          <button (click)="apagar(proj.id)" class="btn-apagar">
+            Apagar
+          </button>
+        </div>
+
+      </div>
+    }
+
+    @if (projetosFiltrados.length === 0) {
+      <p class="sem-resultados">Nenhum projeto encontrado.</p>
+    }
+  </div>
+
+</div>

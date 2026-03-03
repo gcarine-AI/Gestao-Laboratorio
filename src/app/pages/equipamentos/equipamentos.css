@@ -1,0 +1,152 @@
+.pagina h1 {
+  color: #1a365d;
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-adicionar {
+  background: #2b6cb0;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-adicionar:hover {
+  background: #1a365d;
+}
+
+/* ── FILTROS ── */
+.filtros {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.input-pesquisa {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.select-filtro {
+  padding: 0.6rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: white;
+  cursor: pointer;
+}
+
+/* ── LISTA ── */
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 5px solid #cbd5e0;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card.disponivel  { border-left-color: #38a169; }
+.card.em-uso { border-left-color: #3182ce; }
+.card.em-manutencao   { border-left-color: #dd6b20; }
+
+.card p {
+  color: #4a5568;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.card-topo h3 {
+  color: #1a365d;
+  font-size: 1.1rem;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.badge-disponivel  { background: #c6f6d5; color: #276749; }
+.badge-em-uso { background: #bee3f8; color: #2c5282; }
+.badge-em-manutencao   { background: #feebc8; color: #7b341e; }
+
+.card-acoes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-ver {
+  background: #ebf8ff;
+  color: #2b6cb0;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.btn-editar {
+  background: #fefcbf;
+  color: #b7791f;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.btn-apagar {
+  background: #fff5f5;
+  color: #e53e3e;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-apagar:hover {
+  background: #fed7d7;
+}
+
+.sem-resultados {
+  color: #718096;
+  font-style: italic;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+}
