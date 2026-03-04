@@ -1,1 +1,33 @@
+<div class="card">
 
+  <div class="card-topo">
+    <h3>{{ titulo }}</h3>
+    @if (badgeTexto) {
+      <span class="badge" [style.backgroundColor]="badgeCor">
+      {{ badgeTexto }}
+      </span>
+    }
+  </div>
+
+  @if (subtitulo) {
+    <p class="subtitulo">{{ subtitulo }}</p>
+  }
+
+  @if (info1) {
+    <p class="info">{{ info1 }}</p>
+  }
+
+  @if (info2) {
+    <p class="info">{{ info2 }}</p>
+  }
+
+  <div class="card-acoes">
+    @if (linkDetalhe) {
+      <a [routerLink]="linkDetalhe" class="btn-ver">Ver Detalhe</a>
+    }
+    @if (linkEditar) {
+      <a [routerLink]="linkEditar" class="btn-editar">Editar</a>
+    }
+  </div>
+
+</div>

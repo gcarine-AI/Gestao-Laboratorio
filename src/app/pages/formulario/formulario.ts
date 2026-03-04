@@ -61,7 +61,7 @@ export class Formulario implements OnInit {
         nome: ['', [Validators.required, Validators.minLength(3)]],
         tipo: ['', Validators.required],
         estado: ['Disponivel', Validators.required],
-        localizacao: ['', [Validators.required], this.validarLocalizacao],
+        localizacao: ['', [Validators.required, this.validarLocalizacao]],
         dataAquisicao: ['', Validators.required]
       });
     }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
+import { Card } from '../../components/card/card';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink],
+  imports: [RouterLink, Card],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -15,6 +16,8 @@ export class Dashboard implements OnInit{
   projetosEmCurso = 0;
   equipamentosDisponiveis = 0;
   ultimoItem: any = null;
+  ultimoItemNome = '';
+  ultimoItemTipo = '';
 
   constructor(private labService: LabService) {}
 
@@ -25,6 +28,18 @@ export class Dashboard implements OnInit{
       this.projetosEmCurso = this.labService.getProjetosEmCurso();
       this.equipamentosDisponiveis = this.labService.getEquipamentosDisponiveis();
       this.ultimoItem = this.labService.getUltimoItemAdicionado();
+
+      if (this.ultimoItem) {
+        this.ultimoItemNome = this.ultimoItem.nome ?? this.ultimoItem.titulo ?? 'Sem nome';
+        if (this.ultimoItem.especialidade) {
+          this.ultimoItemTipo = 'investigador'
+        } else if (this.ultimoItem.area) {
+          this.ultimoItemTipo = 'projeto'
+        } else {
+          this.ultimoItemTipo = 'equipamento';
+
+        }
+      }
 
     }
 

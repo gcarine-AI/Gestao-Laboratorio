@@ -44,13 +44,16 @@
    @if (ultimoItem) {
      <div class="ultimo-item">
     <h2>🕐 Último Item Adicionado</h2>
-    <div class="item-card">
-      <p><strong>Nome/Título:</strong> {{ ultimoItem.nome || ultimoItem.titulo }}</p>
-      <p><strong>ID:</strong> {{ ultimoItem.id }}</p>
-    </div>
-  </div>
-   }
-
+    <app-card
+    [titulo]="ultimoItemNome"
+    [subtitulo]="'Tipo:' + ultimoItemTipo"
+    [info1]="'ID: ' + ultimoItem.id"
+    badgeTexto="Recente"
+    badgeCor="azul"
+    [linkDetalhe]="'/detalhe/' + ultimoItemTipo + '/' + ultimoItem.id"
+    />
+     </div>
+    }
 
   <!-- ATALHOS -->
   <div class="atalhos">
