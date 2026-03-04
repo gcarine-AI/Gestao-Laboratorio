@@ -17,3 +17,5 @@ export class StatusPipe implements PipeTransform {
     return estados[valor] ?? valor;
   }
 }
+
+
