@@ -40,7 +40,7 @@ export class Investigadores implements OnInit {
       );
     }
 
-    if (this.filtroAtivo === "ativos") {
+    if (this.filtroAtivo === "activos") {
       resultado = resultado.filter(i => i.activo);
     }else if (this.filtroAtivo === "inativos") {
       resultado = resultado.filter (i => !i.activo);

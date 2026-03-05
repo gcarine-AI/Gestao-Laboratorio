@@ -69,7 +69,7 @@
   transform: translateY(-2px);
 }
 
-.card.disponivel  { border-left-color: #38a169; }
+.card.disponível  { border-left-color: #38a169; }
 .card.em-uso { border-left-color: #3182ce; }
 .card.em-manutencao   { border-left-color: #dd6b20; }
 
@@ -98,7 +98,7 @@
   font-weight: 600;
 }
 
-.badge-disponivel  { background: #16d051; color: #276749; }
+.badge-disponível  { background: #16d051; color: #276749; }
 .badge-em-uso { background: #bee3f8; color: #2c5282; }
 .badge-em-manutencao   { background: #feebc8; color: #7b341e; }
 

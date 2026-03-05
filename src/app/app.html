@@ -6,26 +6,61 @@
     </div>
     <ul class="navbar-links">
       <li>
-        <a routerLink="/dashboard" routerLinkActive="ativo">
+        <a routerLink="/dashboard" routerLinkActive="activo">
           🏠 Dashboard
         </a>
       </li>
       <li>
-        <a routerLink="/investigadores" routerLinkActive="ativo">
-          👨‍🔬 Investigadores
+        <a routerLink="/investigadores" routerLinkActive="activo">
+          👩🏻‍🔬 Investigadores
         </a>
       </li>
       <li>
-        <a routerLink="/projetos" routerLinkActive="ativo">
+        <a routerLink="/projetos" routerLinkActive="activo">
           📋 Projetos
         </a>
       </li>
       <li>
-        <a routerLink="/equipamentos" routerLinkActive="ativo">
+        <a routerLink="/equipamentos" routerLinkActive="activo">
           🔧 Equipamentos
         </a>
       </li>
     </ul>
+
+    <!--Botao de pesquisa global-->
+    <div class = "pesquisa-global">
+      <input
+        type="text"
+        [(ngModel)] = "termoDePesquisa"
+        (keyup.enter)=" pesquisar()"
+        placeholder="🔍 Pesquisar...">
+
+      @if (mostrarDropdown && resultados.length > 0) {
+        <div class = "dropdown">
+          @for (resultado of resultados; track resultado.id) {
+            <a
+              [routerLink]="['/detalhe', resultado.tipo, resultado.id]"
+              (click)="fecharDropDown()"
+              class="dropdown-item">
+              @if (resultado.tipo === 'investigador') { 👩🏻‍🔬 }
+              @if (resultado.tipo === 'projeto') { 📋 }
+              @if (resultado.tipo === 'equipamento') { 🔧 }
+              {{ resultado.nome }}
+              <span class="badge">{{ resultado.tipo }}</span>
+            </a>
+          }
+        </div>
+      }
+
+      @if (mostrarDropdown && resultados.length === 0) {
+        <div class = "dropdown">
+          <p class="dropdown-vazio">Nenhum resultado encontrado</p>
+        </div>
+      }
+
+    </div>
+
+
   </nav>
 
   <main class="conteudo">

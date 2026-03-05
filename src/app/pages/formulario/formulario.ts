@@ -26,17 +26,20 @@ export class Formulario implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.tipo = this.route.snapshot.paramMap.get('tipo') ?? '';
-      const idParam = this.route.snapshot.paramMap.get('id');
+    this.route.paramMap.subscribe((params) => {
+      this.tipo = params.get('tipo') ?? '';
+      const idParam = params.get('id');
       this.id = idParam ? Number(idParam): null;
       this.modoEdicao = this.id !== null;
 
       this.criarFormulario();
+    });
 
       if(this.modoEdicao) {
         this.preencherFormulario();
       }
   }
+
 
   criarFormulario(): void {
     if(this.tipo === 'investigador') {
@@ -60,7 +63,7 @@ export class Formulario implements OnInit {
       this.formulario = this.fb.group({
         nome: ['', [Validators.required, Validators.minLength(3)]],
         tipo: ['', Validators.required],
-        estado: ['Disponivel', Validators.required],
+        estado: ['Disponível', Validators.required],
         localizacao: ['', [Validators.required, this.validarLocalizacao]],
         dataAquisicao: ['', Validators.required]
       });

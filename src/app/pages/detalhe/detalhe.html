@@ -11,7 +11,7 @@
   @if (investigador) {
     <div class="cabecalho">
       <div>
-        <h1>👨‍🔬 {{ investigador.nome }}</h1>
+        <h1>👩🏻‍🔬 {{ investigador.nome }}</h1>
         <span class="badge" [class.badge-activo]="investigador.activo" [class.badge-inativo]="!investigador.activo">
           {{ investigador.activo ? '🟢 Ativo' : '🔴 Inativo' }}
         </span>
@@ -43,7 +43,7 @@
         </div>
         <div class="campo">
           <span class="campo-label">Estado</span>
-          <span class="campo-valor">{{ investigador.activo ? 'Ativo' : 'Inativo' }}</span>
+          <span class="campo-valor">{{ investigador.activo ? 'Activo' : 'Inativo' }}</span>
         </div>
         <div class="campo">
           <span class="campo-label">Data de Registo</span>
@@ -108,7 +108,7 @@
       <div>
         <h1>🔧 {{ equipamento.nome }}</h1>
         <span class="badge"
-          [class.badge-disponivel]="equipamento.estado === 'Disponível'"
+          [class.badge-disponível]="equipamento.estado === 'Disponível'"
           [class.badge-em-uso]="equipamento.estado === 'Em uso'"
           [class.badge-manutencao]="equipamento.estado === 'Em manutenção'">
           {{ equipamento.estado | status }}

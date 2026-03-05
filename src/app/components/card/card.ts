@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 
@@ -8,7 +8,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './card.html',
   styleUrl: './card.css',
 })
-export class Card {
+export class Card  {
+
   @Input() titulo = '';
   @Input() subtitulo = '';
   @Input() info1 = '';

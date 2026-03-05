@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Card } from '../../components/card/card';
 
@@ -9,6 +9,7 @@ import { Card } from '../../components/card/card';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
+
 export class Dashboard implements OnInit{
   totalInvestigadores = 0;
   investigadoresAtivos = 0;
@@ -19,9 +20,18 @@ export class Dashboard implements OnInit{
   ultimoItemNome = '';
   ultimoItemTipo = '';
 
-  constructor(private labService: LabService) {}
+  constructor(private labService: LabService, private rota: Router) {}
 
     ngOnInit(): void {
+      this.carregarDados();
+
+      this.rota.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          this.carregarDados();
+        }
+      });
+    }
+    carregarDados():void {
       this.totalInvestigadores = this.labService.getTotalInvestigadores();
       this.investigadoresAtivos = this.labService.getTotalInvestigadoresAtivos();
       this.totalProjetos = this.labService.getTotalProjetos();
@@ -44,4 +54,4 @@ export class Dashboard implements OnInit{
     }
 
 
-}
+  }
