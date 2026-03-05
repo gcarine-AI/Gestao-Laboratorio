@@ -1,13 +1,13 @@
 <div class="dashboard">
 
   <h1>🔬 Laboratório de Investigação</h1>
-  <p class="subtitulo">Bem-vindo ao painel de controlo</p>
+  <p class="subtitulo">Bem-vindo ao sistema de gestão laboratorial</p>
 
   <!-- KPIs -->
   <div class="kpis">
 
     <div class="kpi azul">
-      <div class="kpi-icone">👨‍🔬</div>
+      <div class="kpi-icone">👩🏻‍🔬</div>
       <div class="kpi-info">
         <span class="kpi-valor">{{ totalInvestigadores }}</span>
         <span class="kpi-label">Total de Investigadores</span>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="kpi roxo">
-      <div class="kpi-icone">🔧</div>
+      <div class="kpi-icone">⚙️</div>
       <div class="kpi-info">
         <span class="kpi-valor">{{ equipamentosDisponiveis }}</span>
         <span class="kpi-label">Equipamentos Disponíveis</span>
@@ -44,20 +44,23 @@
    @if (ultimoItem) {
      <div class="ultimo-item">
     <h2>🕐 Último Item Adicionado</h2>
-    <div class="item-card">
-      <p><strong>Nome/Título:</strong> {{ ultimoItem.nome || ultimoItem.titulo }}</p>
-      <p><strong>ID:</strong> {{ ultimoItem.id }}</p>
-    </div>
-  </div>
-   }
-
+    <app-card
+    [titulo]="ultimoItemNome"
+    [subtitulo]="'Tipo:' + ultimoItemTipo"
+    [info1]="'ID: ' + ultimoItem.id"
+    badgeTexto="Recente"
+    badgeCor="azul"
+    [linkDetalhe]="'/detalhe/' + ultimoItemTipo + '/' + ultimoItem.id"
+    />
+     </div>
+    }
 
   <!-- ATALHOS -->
   <div class="atalhos">
     <h2>Acesso Rápido</h2>
     <div class="atalhos-grid">
       <a routerLink="/investigadores" class="atalho">
-        👨‍🔬 Gerir Investigadores
+        👩🏻‍🔬 Gerir Investigadores
       </a>
       <a routerLink="/projetos" class="atalho">
         📋 Gerir Projetos

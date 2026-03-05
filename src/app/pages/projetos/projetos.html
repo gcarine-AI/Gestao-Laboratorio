@@ -25,7 +25,7 @@
       <option value="todos">Todos os Estados</option>
       <option value="Em curso">Em Curso</option>
       <option value="Concluído">Concluído</option>
-      <option value="Pausado">Pausado</option>
+      <option value="Em pausa">Em Pausa</option>
     </select>
 
     <select
@@ -43,14 +43,14 @@
     @for (proj of projetosFiltrados; track proj.id) {
       <div class="card" [class.em-curso]="proj.estado === 'Em curso'"
                         [class.concluido]="proj.estado === 'Concluído'"
-                        [class.pausado]="proj.estado === 'Em pausa'">
+                        [class.em-pausa]="proj.estado === 'Em pausa'">
 
         <div class="card-topo">
           <h3>{{ proj.titulo }}</h3>
           <span class="badge"
             [class.badge-em-curso]="proj.estado === 'Em curso'"
             [class.badge-concluido]="proj.estado === 'Concluído'"
-            [class.badge-pausado]="proj.estado === 'Em pausa'">
+            [class.badge-em-pausa]="proj.estado === 'Em pausa'">
             {{ proj.estado | status }}
           </span>
         </div>

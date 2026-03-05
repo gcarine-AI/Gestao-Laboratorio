@@ -22,8 +22,8 @@
       class="select-filtro"
     >
       <option value="todos">Todos os Estados</option>
-      <option value="Disponivel">Disponível</option>
-      <option value="Em manutencao">Em manutenção</option>
+      <option value="Disponível">Disponível</option>
+      <option value="Em manutenção">Em manutenção</option>
       <option value="Em uso">Em uso</option>
     </select>
 
@@ -48,8 +48,8 @@
         <div class="card-topo">
           <h3>{{ equip.nome }}</h3>
           <span class="badge"
-            [class.badge-disponivel]="equip.estado === 'Disponível'"
-            [class.badge-em-manutencao]="equip.estado === 'Em manutenção'"
+            [class.badge-disponível]="equip.estado === 'Disponível'"
+            [class.badge-em-manutencão]="equip.estado === 'Em manutenção'"
             [class.badge-em-uso]="equip.estado === 'Em uso'">
             {{ equip.estado | status }}
           </span>
