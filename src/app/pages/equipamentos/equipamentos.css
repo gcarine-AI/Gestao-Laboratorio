@@ -1,5 +1,5 @@
 .pagina h1 {
-  color: #1a365d;
+  color: whitesmoke;
 }
 
 .cabecalho {
@@ -10,7 +10,7 @@
 }
 
 .btn-adicionar {
-  background: #2b6cb0;
+  background: #2bacb0;
   color: white;
   text-decoration: none;
   padding: 0.6rem 1.2rem;
@@ -20,7 +20,7 @@
 }
 
 .btn-adicionar:hover {
-  background: #1a365d;
+  background: #24c1cc;
 }
 
 /* ── FILTROS ── */
@@ -69,9 +69,9 @@
   transform: translateY(-2px);
 }
 
-.card.disponivel  { border-left-color: #38a169; }
+.card.disponível  { border-left-color: #38a169; }
 .card.em-uso { border-left-color: #3182ce; }
-.card.em-manutencao   { border-left-color: #dd6b20; }
+.card.em-manutenção   { border-left-color: #dd6b20; }
 
 .card p {
   color: #4a5568;
@@ -98,9 +98,9 @@
   font-weight: 600;
 }
 
-.badge-disponivel  { background: #16d051; color: #276749; }
+.badge-disponível  { background: #16d051; color: #276749; }
 .badge-em-uso { background: #bee3f8; color: #2c5282; }
-.badge-em-manutencao   { background: #feebc8; color: #7b341e; }
+.badge-em-manutenção   { background: #feebc8; color: #7b341e; }
 
 .card-acoes {
   display: flex;
@@ -110,7 +110,7 @@
 
 .btn-ver {
   background: #ebf8ff;
-  color: #2b6cb0;
+  color: #2bb079;
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;

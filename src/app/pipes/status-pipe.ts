@@ -10,7 +10,7 @@ export class StatusPipe implements PipeTransform {
       'Em curso': '🟢 Em curso',
       'Concluído': '✅ Concluído',
       'Em pausa': '⏸️ Em pausa',
-      'Disponível': '🟢 Disponível',
+      'Disponível': '❇️ Disponível',
       'Em uso': '🔵 Em uso',
       'Em manutenção': '🔧 Em manutenção'
     };

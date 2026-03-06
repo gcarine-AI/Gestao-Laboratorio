@@ -116,24 +116,37 @@ export class LabService {
     },
   ];
 
-  construtor () {
+  constructor () {
     this.carregarDoStorage ();
   }
 
   private guardarNoStorage(): void {
     localStorage.setItem("investigadores", JSON.stringify(this.investigadores));
     localStorage.setItem("projetos", JSON.stringify(this.projetos));
-    localStorage.setItem("equipamento", JSON.stringify(this.equipamentos));
+    localStorage.setItem("equipamentos", JSON.stringify(this.equipamentos));
+   // console.log('guardado!', this.investigadores);
   }
 
   private carregarDoStorage(): void {
     const inv = localStorage.getItem("investigadores");
     const proj = localStorage.getItem("projetos");
     const equip = localStorage.getItem("equipamentos");
+    const ultimo = localStorage.getItem('ultimoItem')
 
-    if(inv) this.investigadores = JSON.parse(inv);
-    if(proj) this.projetos = JSON.parse(proj);
-    if(equip) this.equipamentos = JSON.parse(equip);
+
+    if(inv) {this.investigadores = JSON.parse(inv)
+    } else {this.guardarNoStorage()
+    }
+
+    if(proj) {this.projetos = JSON.parse(proj);
+    } else {this.guardarNoStorage()
+    }
+
+    if(equip) {this.equipamentos = JSON.parse(equip);
+      } else {this.guardarNoStorage()
+    }
+
+    if(ultimo) this.ultimoItemAdicionado = JSON.parse(ultimo);
 
   }
 
@@ -148,7 +161,10 @@ export class LabService {
   adicionarInvestigadores(inv: Omit<Investigador, 'id'>): void {
     const novoId = this.investigadores.length > 0
     ? Math.max(...this.investigadores.map(i => i.id)) + 1 : 1;
-    this.investigadores.push({id: novoId, ...inv});
+    const novoInvestigador = {id: novoId, ...inv};
+    this.investigadores.push(novoInvestigador);
+    this.ultimoItemAdicionado = novoInvestigador;
+    localStorage.setItem('ultimoItem', JSON.stringify(novoInvestigador));
     this.guardarNoStorage();
 
   }
@@ -177,7 +193,10 @@ export class LabService {
   adicionarProjetos(proj: Omit<Projeto, "id">): void {
     const novoId = this.projetos.length > 0
     ? Math.max(...this.projetos.map(p => p.id)) + 1 : 1;
-    this.projetos.push({id: novoId, ...proj});
+    const novoProjeto = {id: novoId, ...proj}
+    this.projetos.push(novoProjeto);
+    this.ultimoItemAdicionado = novoProjeto;
+    localStorage.setItem('ultimoItem', JSON.stringify(novoProjeto));
     this.guardarNoStorage()
   }
 
@@ -206,7 +225,10 @@ export class LabService {
    adicionarEquipamentos(equip: Omit<Equipamento, "id">): void {
     const novoId = this.equipamentos.length > 0
     ? Math.max(...this.equipamentos.map(e => e.id)) + 1 : 1;
-    this.equipamentos.push({id: novoId, ...equip});
+    const novoEquipamento = {id: novoId, ...equip}
+    this.equipamentos.push(novoEquipamento);
+    this.ultimoItemAdicionado = novoEquipamento;
+    localStorage.setItem('ultimoItem', JSON.stringify(novoEquipamento));
     this.guardarNoStorage()
   }
 
@@ -243,14 +265,11 @@ export class LabService {
     return this.equipamentos.filter(e => e.estado === "Disponível").length;
   }
 
+  private ultimoItemAdicionado: Investigador | Projeto | Equipamento | null = null;
+
   getUltimoItemAdicionado(): Investigador | Projeto | Equipamento | null {
-    const todos = [
-      ...this.investigadores,
-      ...this.projetos,
-      ...this.equipamentos
-    ];
-    return todos.length > 0 ? todos[todos.length - 1]: null;
-
-  }
-
+      return this.ultimoItemAdicionado
+    }
 }
+
+
