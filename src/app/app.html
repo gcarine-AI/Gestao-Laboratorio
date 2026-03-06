@@ -33,6 +33,7 @@
         type="text"
         [(ngModel)] = "termoDePesquisa"
         (keyup.enter)=" pesquisar()"
+        (blur)="fecharDropDown()"
         placeholder=" 🔍 Pesquisar... ">
 
       @if (mostrarDropdown && resultados.length > 0) {
@@ -53,7 +54,7 @@
       }
 
       @if (mostrarDropdown && resultados.length === 0) {
-        <div class = "dropdown">
+        <div class = "dropdown" (click)="fecharDropDown()">
           <p class="dropdown-vazio">Nenhum resultado encontrado</p>
         </div>
       }

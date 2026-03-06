@@ -74,7 +74,7 @@
 .card.em-manutenção   { border-left-color: #dd6b20; }
 
 .card p {
-  color: #4a5568;
+  color: #86898d;
   margin-bottom: 0.4rem;
   font-size: 0.95rem;
 }
@@ -98,9 +98,9 @@
   font-weight: 600;
 }
 
-.badge-disponível  { background: #16d051; color: #276749; }
+.badge-disponível  { background: #16d051; color: #368e65; }
 .badge-em-uso { background: #bee3f8; color: #2c5282; }
-.badge-em-manutenção   { background: #feebc8; color: #7b341e; }
+.badge-em-manutenção   { background: #dec390; color: #7b341e; }
 
 .card-acoes {
   display: flex;
