@@ -1,5 +1,5 @@
 .pagina h1 {
-  color: #1a365d;
+  color: whitesmoke;
 }
 
 .cabecalho {
@@ -117,7 +117,7 @@
 
 .btn-ver {
   background: #ebf8ff;
-  color: #2b6cb0;
+  color: #2bb079;
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;

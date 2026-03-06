@@ -42,7 +42,7 @@
   <div class = "lista">
     @for (equip of equipamentosFiltrados; track equip.id) {
       <div class="card" [class.diponivel]="equip.estado === 'Disponível'"
-                        [class.em-manutencao]="equip.estado === 'Em manutenção'"
+                        [class.em-manutenção]="equip.estado === 'Em manutenção'"
                         [class.em-uso]="equip.estado === 'Em uso'">
 
         <div class="card-topo">

@@ -8,17 +8,20 @@
 body {
   background-color: #f0f4f8;
   color: #2d3748;
+
+
 }
 
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./../../public/cellsForJS.png');
 }
 
 /* ── NAVBAR ── */
 .navbar {
-  background: linear-gradient(135deg, #476c1d, #2bb081);
+  background: linear-gradient(135deg, #2bb081, #68e7be);
   color: white;
   padding: 0 2rem;
   display: flex;
@@ -72,53 +75,79 @@ body {
 }
 /* —— Botao pesquisar —— */
 .pesquisa-global {
-  position: relative
+  position: relative;
+  display:flex;
+  align-items: center;
+  gap: 8px
 }
 
 .pesquisa-global input {
-  padding: 6px;
+  padding: 8px 16px;
   border-radius: 20px;
-  border: none;
+  border: 2px solid rgba(255,255,255,0.4);;
   outline: none;
   font-size: 14px;
-  width: 200px;
+  width: 220px;
+  background:rgba(255,255,255,0);
+  color: white;
+  transition: all 0.3s;
+}
+
+.pesquisa-global input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.pesquisa-global input:focus {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.8);
+  width: 260px;
 }
 
 .dropdown {
   position: absolute;
-  top: 40px;
+  top: 44px;
   right: 0;
   background: #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  width: 300px;
   z-index: 1000;
   overflow: hidden;
+  border-top: #2bb081 ;
 }
 
 
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  color: #333;
+  gap: 10px;
+  padding: 12px 16px;
+  color: #2d3748;
   text-decoration: none;
   font-size: 14px;
   border-bottom: 1px solid #f0f0f0;
+  transition: 0.2s;
 }
 
 .dropdown-item:hover {
-  background: #f5f5f5;
+  background: #f0fff4;
+   color: #276749;
 }
 
-.badge {
-  margin-left: auto;
-  font-size: 11px;
-  background: #e0e0e0;
-  padding: 2px 8px;
-  border-radius: 10px;
-  color: #666;
+
+.badge-investigador {
+  background: #bee3f8;
+  color: #2c5282;
+}
+
+.badge-projeto {
+  background: #c6f6d5;
+  color: #276749;
+}
+
+.badge-equipamento {
+  background: #feebc8;
+  color: #7b341e;
 }
 
 .dropdown-vazio {

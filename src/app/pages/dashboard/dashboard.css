@@ -1,30 +1,38 @@
 .dashboard h1 {
   font-size: 2rem;
-  color: #1a365d;
+  color: white;
   margin-bottom: 0.25rem;
+}
+.dashboard {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  border-radius: 12px;
+  padding: 2rem;
 }
 
 .subtitulo {
-  color: #718096;
+  color: rgba(255,255,255,0.8) ;
   margin-bottom: 2rem;
 }
 
 /* ── KPIs ── */
 .kpis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
   margin-bottom: 2.5rem;
 }
 
 .kpi {
-  background: white;
+  background: rgba(200, 200, 200, 0.55);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   border-left: 5px solid;
 }
 
@@ -34,49 +42,50 @@
 .kpi.roxo  { border-color: #805ad5; }
 
 .kpi-icone {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .kpi-valor {
   display: block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: #2d3748;
+  color: #1a202c;
 }
 
 .kpi-label {
-  font-size: 0.85rem;
-  color: #718096;
+  font-size: 0.75rem;
+  color: #2d3748;
+  font-weight: 600;
 }
 
 /* ── ÚLTIMO ITEM ── */
 .ultimo-item {
-  background: white;
+  background: rgba(200, 200, 200, 0.55);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .ultimo-item h2 {
   margin-bottom: 1rem;
-  color: #1a365d;
+  color: #1a202c;
 }
 
 .item-card {
-  background: #f7fafc;
+  background: rgba(180, 180, 180, 0.5);
   border-radius: 8px;
   padding: 1rem;
 }
 
 .item-card p {
   margin-bottom: 0.5rem;
-  color: #4a5568;
+  color: #1a202c;
 }
 
 /* ── ATALHOS ── */
 .atalhos h2 {
-  color: #1a365d;
+  color: white;
   margin-bottom: 1rem;
 }
 
@@ -87,7 +96,7 @@
 }
 
 .atalho {
-  background: #476c1d;
+  background: #18debd;
   color: white;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
@@ -97,5 +106,5 @@
 }
 
 .atalho:hover {
-  background: #476c1d;
+  background: #2bb081;
 }

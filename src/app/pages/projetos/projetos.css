@@ -1,5 +1,5 @@
 .pagina h1 {
-  color: #1a365d;
+  color: whitesmoke;
 }
 
 .cabecalho {
@@ -10,7 +10,7 @@
 }
 
 .btn-adicionar {
-  background: #2b6cb0;
+  background: #18efe4;
   color: white;
   text-decoration: none;
   padding: 0.6rem 1.2rem;
@@ -20,7 +20,7 @@
 }
 
 .btn-adicionar:hover {
-  background: #1a365d;
+  background: #1c9b95;
 }
 
 /* ── FILTROS ── */
@@ -110,7 +110,7 @@
 
 .btn-ver {
   background: #ebf8ff;
-  color: #2b6cb0;
+  color: #2bb079;
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;

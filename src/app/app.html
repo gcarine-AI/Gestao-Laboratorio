@@ -33,7 +33,7 @@
         type="text"
         [(ngModel)] = "termoDePesquisa"
         (keyup.enter)=" pesquisar()"
-        placeholder="🔍 Pesquisar...">
+        placeholder=" 🔍 Pesquisar... ">
 
       @if (mostrarDropdown && resultados.length > 0) {
         <div class = "dropdown">
@@ -46,7 +46,7 @@
               @if (resultado.tipo === 'projeto') { 📋 }
               @if (resultado.tipo === 'equipamento') { 🔧 }
               {{ resultado.nome }}
-              <span class="badge">{{ resultado.tipo }}</span>
+              <span class="badge badge-{{ resultado.tipo }}">{{ resultado.tipo }}</span>
             </a>
           }
         </div>
