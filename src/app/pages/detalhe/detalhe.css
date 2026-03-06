@@ -17,7 +17,7 @@
 }
 
 .cabecalho h1 {
-  color: #1a365d;
+  color: white;
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
@@ -64,7 +64,7 @@
 .badge-em-pausa    { background: #feebc8; color: #7b341e; }
 .badge-disponível { background: #c6f6d5; color: #276749; }
 .badge-em-uso     { background: #bee3f8; color: #2c5282; }
-.badge-em-manutenção { background: #feebc8; color: #7b341e; }
+.badge-em-manutenção { background: #e0c694; color: #7b341e; }
 
 /* ── DETALHE CARD ── */
 .detalhe-grid {

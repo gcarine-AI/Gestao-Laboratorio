@@ -35,6 +35,7 @@ export class Equipamentos implements OnInit {
     if (this.termoPesquisa.trim()) {
       const termo = this.termoPesquisa.toLowerCase();
       resultado = resultado.filter(e =>
+        e.id.toString().includes(termo) ||
         e.nome.toLowerCase().includes(termo) ||
         e.tipo.toLowerCase().includes(termo) ||
         e.localizacao.toLowerCase().includes(termo)
