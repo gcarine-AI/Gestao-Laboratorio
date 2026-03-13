@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink} from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Projeto } from '../../models/projeto.model';
 import { StatusPipe } from '../../pipes/status-pipe';
@@ -11,17 +11,16 @@ import { StatusPipe } from '../../pipes/status-pipe';
   styleUrl: './projetos.css',
 })
 export class Projetos implements OnInit {
+  private labService = inject(LabService);
 
-  projetos: Projeto [] = [];
-  projetosFiltrados: Projeto [] = [];
+  projetos: Projeto[] = [];
+  projetosFiltrados: Projeto[] = [];
   termoPesquisa = '';
   filtroEstado = 'todos';
   ordenacao = 'titulo';
 
-  constructor(private labService: LabService) {}
-
   ngOnInit(): void {
-      this.carregar();
+    this.carregar();
   }
 
   carregar(): void {
@@ -32,37 +31,33 @@ export class Projetos implements OnInit {
   aplicarFiltros(): void {
     let resultado = [...this.projetos];
 
-    if(this.termoPesquisa.trim()) {
+    if (this.termoPesquisa.trim()) {
       const termo = this.termoPesquisa.toLowerCase();
-      resultado = resultado.filter(p =>
-        p.titulo.toLowerCase().includes(termo) ||
-        p.area.toLowerCase().includes(termo)
+      resultado = resultado.filter(
+        (p) => p.titulo.toLowerCase().includes(termo) || p.area.toLowerCase().includes(termo),
       );
     }
 
-    if(this.filtroEstado !== 'todos'){
-      resultado = resultado.filter(p => p.estado === this.filtroEstado)
+    if (this.filtroEstado !== 'todos') {
+      resultado = resultado.filter((p) => p.estado === this.filtroEstado);
     }
-      resultado.sort((a,b) => {
-        if(this.ordenacao === 'titulo') {
+    resultado.sort((a, b) => {
+      if (this.ordenacao === 'titulo') {
         return a.titulo.localeCompare(b.titulo);
       }
-        if(this.ordenacao === 'area') {
-          return a.area.localeCompare(b.area);
-        }
+      if (this.ordenacao === 'area') {
+        return a.area.localeCompare(b.area);
+      }
       return 0;
-      });
+    });
 
-      this.projetosFiltrados = resultado;
-    }
+    this.projetosFiltrados = resultado;
+  }
 
-    apagar(id:number): void {
-      if (confirm("Tem a certeza que quer apagar este Projeto?")) {
+  apagar(id: number): void {
+    if (confirm('Tem a certeza que quer apagar este Projeto?')) {
       this.labService.apagarProjetos(id);
       this.carregar();
     }
   }
 }
-
-
-

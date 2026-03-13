@@ -45,7 +45,7 @@
      <div class="ultimo-item">
     <h2>🕐 Último Item Adicionado</h2>
     <div class="item-card">
-      <p><strong>Nome/Título:</strong> {{ ultimoItem.nome || ultimoItem.titulo }}</p>
+      <p><strong>Nome/Título:</strong> {{ ultimoItem.nome ? ultimoItem.nome : ultimoItem.titulo }}</p>
       <p><strong>ID:</strong> {{ ultimoItem.id }}</p>
     </div>
   </div>

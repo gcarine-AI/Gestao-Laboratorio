@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StatusPipe implements PipeTransform {
   transform(valor: string): string {
-    const estados: { [key: string]: string } = {
+    const estados: Record<string, string> = {
       'Em curso': '🟢 Em curso',
       'Concluído': '✅ Concluído',
       'Em pausa': '⏸️ Em pausa',

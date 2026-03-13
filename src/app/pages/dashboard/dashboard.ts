@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
+import { LabItem } from '../../models/labItem.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,25 +9,22 @@ import { LabService } from '../../services/lab';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard implements OnInit{
+export class Dashboard implements OnInit {
+  private labService = inject(LabService);
+
   totalInvestigadores = 0;
   investigadoresAtivos = 0;
   totalProjetos = 0;
   projetosEmCurso = 0;
   equipamentosDisponiveis = 0;
-  ultimoItem: any = null;
+  ultimoItem: LabItem | undefined;
 
-  constructor(private labService: LabService) {}
-
-    ngOnInit(): void {
-      this.totalInvestigadores = this.labService.getTotalInvestigadores();
-      this.investigadoresAtivos = this.labService.getTotalInvestigadoresAtivos();
-      this.totalProjetos = this.labService.getTotalProjetos();
-      this.projetosEmCurso = this.labService.getProjetosEmCurso();
-      this.equipamentosDisponiveis = this.labService.getEquipamentosDisponiveis();
-      this.ultimoItem = this.labService.getUltimoItemAdicionado();
-
-    }
-
-
+  ngOnInit(): void {
+    this.totalInvestigadores = this.labService.getTotalInvestigadores();
+    this.investigadoresAtivos = this.labService.getTotalInvestigadoresAtivos();
+    this.totalProjetos = this.labService.getTotalProjetos();
+    this.projetosEmCurso = this.labService.getProjetosEmCurso();
+    this.equipamentosDisponiveis = this.labService.getEquipamentosDisponiveis();
+    this.ultimoItem = this.labService.getUltimoItemAdicionado();
+  }
 }

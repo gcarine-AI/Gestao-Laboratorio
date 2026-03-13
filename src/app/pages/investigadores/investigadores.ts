@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Investigador } from '../../models/investigador.model';
-
 
 @Component({
   selector: 'app-investigadores',
@@ -11,17 +10,16 @@ import { Investigador } from '../../models/investigador.model';
   styleUrl: './investigadores.css',
 })
 export class Investigadores implements OnInit {
+  private labService = inject(LabService);
 
-  investigadores: Investigador [] = [];
-  investigadoresFiltrados: Investigador [] = [];
-  termoPesquisa = "";
-  filtroAtivo = "todos";
-  ordenacao = "nome";
-
-  constructor (private labService: LabService) {}
+  investigadores: Investigador[] = [];
+  investigadoresFiltrados: Investigador[] = [];
+  termoPesquisa = '';
+  filtroAtivo = 'todos';
+  ordenacao = 'nome';
 
   ngOnInit(): void {
-      this.carregar();
+    this.carregar();
   }
 
   carregar(): void {
@@ -32,25 +30,25 @@ export class Investigadores implements OnInit {
   aplicarFiltros(): void {
     let resultado = [...this.investigadores];
 
-    if(this.termoPesquisa.trim()) {
+    if (this.termoPesquisa.trim()) {
       const termo = this.termoPesquisa.toLowerCase();
-      resultado = resultado.filter(i =>
-        i.nome.toLowerCase().includes(termo) ||
-        i.especialidade.toLowerCase().includes(termo)
+      resultado = resultado.filter(
+        (i) =>
+          i.nome.toLowerCase().includes(termo) || i.especialidade.toLowerCase().includes(termo),
       );
     }
 
-    if (this.filtroAtivo === "ativos") {
-      resultado = resultado.filter(i => i.activo);
-    }else if (this.filtroAtivo === "inativos") {
-      resultado = resultado.filter (i => !i.activo);
+    if (this.filtroAtivo === 'ativos') {
+      resultado = resultado.filter((i) => i.activo);
+    } else if (this.filtroAtivo === 'inativos') {
+      resultado = resultado.filter((i) => !i.activo);
     }
     resultado.sort((a, b) => {
-      if (this.ordenacao === "nome") {
+      if (this.ordenacao === 'nome') {
         return a.nome.localeCompare(b.nome);
       }
-      if (this.ordenacao === "especialidade") {
-      return a.especialidade.localeCompare(b.especialidade);
+      if (this.ordenacao === 'especialidade') {
+        return a.especialidade.localeCompare(b.especialidade);
       }
       return 0;
     });
@@ -59,8 +57,7 @@ export class Investigadores implements OnInit {
   }
 
   apagar(id: number): void {
-
-    if (confirm("Tem a certeza que quer apagar este investigador?")) {
+    if (confirm('Tem a certeza que quer apagar este investigador?')) {
       this.labService.apagarInvestigadores(id);
       this.carregar();
     }

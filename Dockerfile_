@@ -1,0 +1,17 @@
+#
+FROM node:20-alpine AS build
+# diretoria de trabalho (onde correm os scripts -> run)
+WORKDIR /usr/src/app
+
+# copiar ficheiros para a imagem
+COPY . .
+
+# corre npm install -> instala packages (enquanto faz o build)
+RUN npm install -g @angular/cli
+RUN npm install
+
+#expor a porta
+EXPOSE 4200
+
+#comandos a correr no fim do build
+CMD ["ng", "serve", "--host", "0.0.0.0"]

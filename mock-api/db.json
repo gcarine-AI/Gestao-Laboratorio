@@ -1,0 +1,112 @@
+{
+  "investigadores": [
+    {
+      "id": 1,
+      "nome": "Florence Janody",
+      "email": "fjanody@lab.pt",
+      "departamento": "CRC",
+      "especialidade": "Biologia do desenvolvimento",
+      "activo": true,
+      "dataCriacao": "2018-05-01"
+    },
+    {
+      "id": 2,
+      "nome": "Alexandre Carmo",
+      "email": "acarmo@lab.pt",
+      "departamento": "CAGE",
+      "especialidade": "Bioquimica",
+      "activo": true,
+      "dataCriacao": "2004-01-01"
+    },
+    {
+      "id": 3,
+      "nome": "Jorge Pedrosa",
+      "email": "jpedrosa@lab.pt",
+      "departamento": "MIRD",
+      "especialidade": "Microbiologia da Infeção",
+      "activo": true,
+      "dataCriacao": "2009-09-01"
+    },
+    {
+      "id": 4,
+      "nome": "Simon Davis",
+      "email": "sdavis@lab.pt",
+      "departamento": "TCB",
+      "especialidade": "Biofisica",
+      "activo": false,
+      "dataCriacao": "1999-06-01"
+    }
+  ],
+  "projetos": [
+    {
+      "id": 1,
+      "titulo": "Estudo de Proteínas",
+      "descricao": "Análise de proteínas celulares",
+      "area": "Bioquímica",
+      "estado": "Em curso",
+      "dataInicio": "2024-01-10",
+      "investigadorId": 2
+    },
+    {
+      "id": 2,
+      "titulo": "Mapeamento Genético",
+      "descricao": "Sequenciação do genoma humano",
+      "area": "Genética",
+      "estado": "Em pausa",
+      "dataInicio": "2023-09-05",
+      "investigadorId": 4
+    },
+    {
+      "id": 3,
+      "titulo": "Resistência Bacteriana",
+      "descricao": "Estudo de bactérias resistentes",
+      "area": "Microbiologia",
+      "estado": "Concluído",
+      "dataInicio": "2023-11-01",
+      "investigadorId": 3
+    },
+    {
+      "id": 4,
+      "titulo": "Cancro da mama",
+      "descricao": "A tensão entre tecidos pre-malignos",
+      "area": "Biologia",
+      "estado": "Em curso",
+      "dataInicio": "2022-11-01",
+      "investigadorId": 1
+    }
+  ],
+  "equipamentos": [
+    {
+      "id": 1,
+      "nome": "Microscópio Confocal",
+      "tipo": "Ótico",
+      "estado": "Em uso",
+      "localizacao": "Sala Microscopia",
+      "dataAquisicao": "2020-05-12"
+    },
+    {
+      "id": 2,
+      "nome": "Centrifuga",
+      "tipo": "Mecânico",
+      "estado": "Disponível",
+      "localizacao": "Sala B2",
+      "dataAquisicao": "2019-08-30"
+    },
+    {
+      "id": 3,
+      "nome": "Sequenciador DNA",
+      "tipo": "Genético",
+      "estado": "Em manutenção",
+      "localizacao": "Sala C3",
+      "dataAquisicao": "2021-02-14"
+    },
+    {
+      "id": 4,
+      "nome": "Câmara de fluxo",
+      "tipo": "Celular",
+      "estado": "Em uso",
+      "localizacao": "Sala BSL2",
+      "dataAquisicao": "2024-09-14"
+    }
+  ]
+}

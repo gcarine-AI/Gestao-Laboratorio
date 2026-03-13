@@ -4,6 +4,7 @@ import { Projeto } from '../models/projeto.model';
 import { Equipamento } from '../models/equipamento.model';
 
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -243,13 +244,13 @@ export class LabService {
     return this.equipamentos.filter(e => e.estado === "Disponível").length;
   }
 
-  getUltimoItemAdicionado(): Investigador | Projeto | Equipamento | null {
-    const todos = [
+  getUltimoItemAdicionado(): Investigador | Projeto | Equipamento | undefined {
+    const todos: (Investigador | Projeto | Equipamento)[] = [
       ...this.investigadores,
       ...this.projetos,
       ...this.equipamentos
     ];
-    return todos.length > 0 ? todos[todos.length - 1]: null;
+    return todos.length > 0 ? todos[todos.length - 1]: undefined
 
   }
 
