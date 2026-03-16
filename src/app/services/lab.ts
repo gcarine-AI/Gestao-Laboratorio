@@ -36,7 +36,7 @@ export class LabService {
     }
 
   apagarInvestigadores(id:number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/investigadors/${id}`)
+    return this.http.delete<void>(`${this.apiUrl}/investigadores/${id}`)
   }
 
 
@@ -124,10 +124,10 @@ export class LabService {
       });
     });
   }
-}
+
 
   getUltimoItemAdicionado(): Observable<Investigador | Projeto | Equipamento | undefined> {
-  return forkJoin({
+    return forkJoin({
     investigadores: this.getInvestigadores(),
     projetos: this.getProjetos(),
     equipamentos: this.getEquipamentos()
@@ -137,4 +137,5 @@ export class LabService {
       return todos.length > 0 ? todos[todos.length - 1] : undefined;
     })
   );
+  }
 }

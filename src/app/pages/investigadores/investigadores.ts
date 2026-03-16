@@ -23,8 +23,10 @@ export class Investigadores implements OnInit {
   }
 
   carregar(): void {
-    this.investigadores = this.labService.getInvestigadores();
-    this.aplicarFiltros();
+    this.labService.getInvestigadores().subscribe(dados => {
+      this.investigadores = dados;
+      this.aplicarFiltros()
+    });
   }
 
   aplicarFiltros(): void {
@@ -58,8 +60,9 @@ export class Investigadores implements OnInit {
 
   apagar(id: number): void {
     if (confirm('Tem a certeza que quer apagar este investigador?')) {
-      this.labService.apagarInvestigadores(id);
-      this.carregar();
+      this.labService.apagarInvestigadores(id).subscribe(() => {
+        this.carregar()
+      });
     }
   }
 }

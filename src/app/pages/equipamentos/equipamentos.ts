@@ -24,8 +24,10 @@ export class Equipamentos implements OnInit {
   }
 
   carregar(): void {
-    this.equipamentos = this.labService.getEquipamentos();
-    this.aplicarFiltros();
+    this.labService.getEquipamentos().subscribe(dados=> {
+      this.equipamentos = dados;
+       this.aplicarFiltros();
+    });
   }
 
   aplicarFiltros(): void {
@@ -51,9 +53,6 @@ export class Equipamentos implements OnInit {
       if (this.ordenacao === 'tipo') {
         return a.tipo.localeCompare(b.tipo);
       }
-      /*if (this.ordenacao === 'localizacao') {
-          return a.localizacao.localeCompare(b.localizacao)
-        }*/
       return 0;
     });
 
@@ -62,8 +61,9 @@ export class Equipamentos implements OnInit {
 
   apagar(id: number): void {
     if (confirm('Tem a certeza que quer apagar este Equipamento?')) {
-      this.labService.apagarEquipamentos(id);
-      this.carregar();
+      this.labService.apagarEquipamentos(id).subscribe(() => {
+        this.carregar();
+      })
     }
   }
 }

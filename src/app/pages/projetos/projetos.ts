@@ -24,8 +24,10 @@ export class Projetos implements OnInit {
   }
 
   carregar(): void {
-    this.projetos = this.labService.getProjetos();
-    this.aplicarFiltros();
+    this.labService.getProjetos().subscribe(dados => {
+      this.projetos = dados
+      this.aplicarFiltros()
+    });
   }
 
   aplicarFiltros(): void {
@@ -56,8 +58,9 @@ export class Projetos implements OnInit {
 
   apagar(id: number): void {
     if (confirm('Tem a certeza que quer apagar este Projeto?')) {
-      this.labService.apagarProjetos(id);
-      this.carregar();
+      this.labService.apagarProjetos(id).subscribe(() => {
+        this.carregar();
+      });
     }
   }
 }

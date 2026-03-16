@@ -20,11 +20,22 @@ export class Dashboard implements OnInit {
   ultimoItem: LabItem | undefined;
 
   ngOnInit(): void {
-    this.totalInvestigadores = this.labService.getTotalInvestigadores();
-    this.investigadoresAtivos = this.labService.getTotalInvestigadoresAtivos();
-    this.totalProjetos = this.labService.getTotalProjetos();
-    this.projetosEmCurso = this.labService.getProjetosEmCurso();
-    this.equipamentosDisponiveis = this.labService.getEquipamentosDisponiveis();
-    this.ultimoItem = this.labService.getUltimoItemAdicionado();
-  }
+  this.labService.getInvestigadores().subscribe(lista => {
+    this.totalInvestigadores = lista.length;
+    this.investigadoresAtivos = lista.filter(i => i.activo).length;
+  });
+
+  this.labService.getProjetos().subscribe(lista => {
+    this.totalProjetos = lista.length;
+    this.projetosEmCurso = lista.filter(p => p.estado === 'Em curso').length;
+  });
+
+  this.labService.getEquipamentos().subscribe(lista => {
+    this.equipamentosDisponiveis = lista.filter(e => e.estado === 'Disponível').length;
+  });
+
+  this.labService.getUltimoItemAdicionado().subscribe(item => {
+    this.ultimoItem = item as LabItem;
+  });
+}
 }

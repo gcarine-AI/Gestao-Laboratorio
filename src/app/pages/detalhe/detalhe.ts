@@ -25,11 +25,17 @@ export class Detalhe implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (this.tipo === 'investigador') {
-      this.item = this.labService.getInvestigadoresById(id) ?? null;
+      this.labService.getInvestigadoresById(id).subscribe(inv => {
+        this.item = inv;
+      });
     } else if (this.tipo === 'projeto') {
-      this.item = this.labService.getProjetosById(id) ?? null;
+      this.labService.getProjetosById(id).subscribe(proj => {
+        this.item = proj;
+      });
     } else if (this.tipo === 'equipamento') {
-      this.item = this.labService.getEquipamentosById(id) ?? null;
+      this.labService.getEquipamentosById(id).subscribe(equip => {
+        this.item = equip;
+      });
     }
   }
 

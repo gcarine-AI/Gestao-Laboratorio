@@ -85,33 +85,30 @@ export class Formulario implements OnInit {
     return null;
   }
 
-  preencherFormulario(): void {
-    if (this.tipo === 'investigador' && this.id) {
-      const inv = this.labService.getInvestigadoresById(this.id);
-      if (inv) {
-        this.formulario.patchValue({
-          ...inv,
-          dataCriacao: this.formatarDataParaInput(new Date(inv.dataCriacao)),
-        });
-      }
-    } else if (this.tipo === 'projeto' && this.id) {
-      const proj = this.labService.getProjetosById(this.id);
-      if (proj) {
-        this.formulario.patchValue({
-          ...proj,
-          dataInicio: this.formatarDataParaInput(new Date(proj.dataInicio)),
-        });
-      }
-    } else if (this.tipo === 'equipamento' && this.id) {
-      const equip = this.labService.getEquipamentosById(this.id);
-      if (equip) {
-        this.formulario.patchValue({
-          ...equip,
-          dataAquisicao: this.formatarDataParaInput(new Date(equip.dataAquisicao)),
-        });
-      }
-    }
+ preencherFormulario(): void {
+  if (this.tipo === 'investigador' && this.id) {
+    this.labService.getInvestigadoresById(this.id).subscribe(inv => {
+      this.formulario.patchValue({
+        ...inv,
+        dataCriacao: this.formatarDataParaInput(new Date(inv.dataCriacao)),
+      });
+    });
+  } else if (this.tipo === 'projeto' && this.id) {
+    this.labService.getProjetosById(this.id).subscribe(proj => {
+      this.formulario.patchValue({
+        ...proj,
+        dataInicio: this.formatarDataParaInput(new Date(proj.dataInicio)),
+      });
+    });
+  } else if (this.tipo === 'equipamento' && this.id) {
+    this.labService.getEquipamentosById(this.id).subscribe(equip => {
+      this.formulario.patchValue({
+        ...equip,
+        dataAquisicao: this.formatarDataParaInput(new Date(equip.dataAquisicao)),
+      });
+    });
   }
+}
 
   formatarDataParaInput(data: Date): string {
     return data.toISOString().split('T')[0];
@@ -128,11 +125,15 @@ export class Formulario implements OnInit {
     if (this.tipo === 'investigador') {
       const dados = { ...valores, dataCriacao: new Date(valores.dataCriacao) };
       if (this.modoEdicao && this.id) {
-        this.labService.editarInvestigadores({ id: this.id, ...dados });
+        this.labService.editarInvestigadores({ id: this.id, ...dados }).subscribe(() => {
+          this.router.navigate(['/investigadores']);
+        });
       } else {
-        this.labService.adicionarInvestigadores(dados);
+        this.labService.adicionarInvestigadores(dados).subscribe(() => {
+          this.router.navigate(['/investigadores']);
+        });
       }
-      this.router.navigate(['/investigadores']);
+
     } else if (this.tipo === 'projeto') {
       const dados = {
         ...valores,
@@ -140,19 +141,26 @@ export class Formulario implements OnInit {
         investigadorId: Number(valores.investigadorId),
       };
       if (this.modoEdicao && this.id) {
-        this.labService.editarProjetos({ id: this.id, ...dados });
+        this.labService.editarProjetos({ id: this.id, ...dados }).subscribe(() => {
+          this.router.navigate(['/projetos']);
+        });
       } else {
-        this.labService.adicionarProjetos(dados);
+        this.labService.adicionarProjetos(dados).subscribe(() => {
+          this.router.navigate(['/projetos']);
+        });
       }
-      this.router.navigate(['/projetos']);
+
     } else if (this.tipo === 'equipamento') {
       const dados = { ...valores, dataAquisicao: new Date(valores.dataAquisicao) };
       if (this.modoEdicao && this.id) {
-        this.labService.editarEquipamentos({ id: this.id, ...dados });
+        this.labService.editarEquipamentos({ id: this.id, ...dados }).subscribe(() => {
+          this.router.navigate(['/equipamentos']);
+        });
       } else {
-        this.labService.adicionarEquipamentos(dados);
+        this.labService.adicionarEquipamentos(dados).subscribe(() => {
+          this.router.navigate(['/equipamentos']);
+        });
       }
-      this.router.navigate(['/equipamentos']);
     }
   }
 
