@@ -4,7 +4,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - feature/ci-gitActions
+      - develop-idp
   workflow_dispatch:
 
 jobs:
@@ -41,8 +41,8 @@ jobs:
           cat > src/environments/environment.development.ts <<EOF
           export const environment = {
             production: false,
-            supabaseUrl: '${SUPABASE_URL}',
-            supabaseKey: '${SUPABASE_ANON_KEY}',
+            supabaseUrl: '${{ env.SUPABASE_URL}}',
+            supabaseKey: '${{ env.SUPABASE_ANON_KEY}}',
           };
           EOF
 
