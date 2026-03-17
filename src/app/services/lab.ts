@@ -13,71 +13,71 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class LabService {
-  private apiUrl = environment.API_KEY;
+  private supaBaseUrl = environment.supabaseURL;
 
   constructor(private http: HttpClient) {}
 
 
 
   getInvestigadores(): Observable<Investigador[]> {
-    return this.http.get<Investigador[]>(`${this.apiUrl}/investigadores`);
+    return this.http.get<Investigador[]>(`${this.supaBaseUrl}/investigadores`);
   }
 
   getInvestigadoresById(id:number): Observable<Investigador> {
-    return this.http.get<Investigador>(`${this.apiUrl}/investigadores/${id}`);
+    return this.http.get<Investigador>(`${this.supaBaseUrl}/investigadores/${id}`);
   }
 
   adicionarInvestigadores(inv: Omit<Investigador, 'id'>): Observable<Investigador> {
-    return this.http.post<Investigador>(`${this.apiUrl}/investigadores`, inv);
+    return this.http.post<Investigador>(`${this.supaBaseUrl}/investigadores`, inv);
   }
 
   editarInvestigadores(atualizado: Investigador): Observable<Investigador> {
-    return this.http.put<Investigador>(`${this.apiUrl}/investigadores/${atualizado.id}`, atualizado);
+    return this.http.put<Investigador>(`${this.supaBaseUrl}/investigadores/${atualizado.id}`, atualizado);
     }
 
   apagarInvestigadores(id:number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/investigadores/${id}`)
+    return this.http.delete<void>(`${this.supaBaseUrl}/investigadores/${id}`)
   }
 
 
   getProjetos(): Observable<Projeto[]> {
-    return this.http.get<Projeto[]>(`${this.apiUrl}/projetos`);
+    return this.http.get<Projeto[]>(`${this.supaBaseUrl}/projetos`);
   }
 
   getProjetosById(id: number): Observable<Projeto> {
-    return this.http.get<Projeto>(`${this.apiUrl}/projetos/${id}`);
+    return this.http.get<Projeto>(`${this.supaBaseUrl}/projetos/${id}`);
   }
 
   adicionarProjetos(proj: Omit<Projeto, 'id'>): Observable<Projeto> {
-    return this.http.post<Projeto>(`${this.apiUrl}/projetos`, proj);
+    return this.http.post<Projeto>(`${this.supaBaseUrl}/projetos`, proj);
   }
 
   editarProjetos(atualizado: Projeto): Observable<Projeto> {
-    return this.http.put<Projeto>(`${this.apiUrl}/projetos/${atualizado.id}`, atualizado);
+    return this.http.put<Projeto>(`${this.supaBaseUrl}/projetos/${atualizado.id}`, atualizado);
   }
 
   apagarProjetos(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/projetos/${id}`);
+    return this.http.delete<void>(`${this.supaBaseUrl}/projetos/${id}`);
   }
 
   getEquipamentos(): Observable<Equipamento[]> {
-    return this.http.get<Equipamento[]>(`${this.apiUrl}/equipamentos`);
+    return this.http.get<Equipamento[]>(`${this.supaBaseUrl}/equipamentos`);
   }
 
   getEquipamentosById(id: number): Observable<Equipamento> {
-    return this.http.get<Equipamento>(`${this.apiUrl}/equipamentos/${id}`);
+    return this.http.get<Equipamento>(`${this.supaBaseUrl}/equipamentos/${id}`);
   }
 
   adicionarEquipamentos(equip: Omit<Equipamento, 'id'>): Observable<Equipamento> {
-    return this.http.post<Equipamento>(`${this.apiUrl}/equipamentos`, equip);
+    return this.http.post<Equipamento>(`${this.supaBaseUrl}/equipamentos`, equip);
   }
 
   editarEquipamentos(atualizado: Equipamento): Observable<Equipamento> {
-    return this.http.put<Equipamento>(`${this.apiUrl}/equipamentos/${atualizado.id}`, atualizado);
+    return this.http.put<Equipamento>(`${this.supaBaseUrl}/equipamentos/${atualizado.id}`, atualizado);
   }
 
   apagarEquipamentos(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/equipamentos/${id}`);
+    return this.http.delete<void>(`${this.supaBaseUrl}/equipamentos/${id}`);
   }
 
   getTotalInvestigadores(): Observable<number> {

@@ -37,5 +37,10 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'dashboard'
+  },
+
+  {
+    path: 'auth',
+    loadComponent: () => import('./auth/auth'). then(m => m.Auth)
   }
 ];

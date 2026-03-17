@@ -1,0 +1,60 @@
+<!-- Vista quando já está autenticado -->
+@if (currentUser) {
+  <div class="auth-container">
+    <p>Bem-vindo, <strong>{{ currentUser }}</strong>!</p>
+    <button (click)="signOut()">Terminar sessão</button>
+  </div>
+}
+
+<!-- Vista de login/registo -->
+@else {
+  <div class="auth-container">
+    <h2>{{ isLoginMode ? 'Entrar' : 'Criar conta' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- Campo nome só aparece no registo -->
+      @if (!isLoginMode) {
+        <div>
+          <input formControlName="nome" type="text" placeholder="Nome completo" />
+          @if (form.get('nome')?.invalid && form.get('nome')?.touched) {
+            <p class="error">O nome é obrigatório e deve ter pelo menos 3 caracteres.</p>
+          }
+        </div>
+      }
+
+      <div>
+        <input formControlName="email" type="email" placeholder="Email" />
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <p class="error">Introduz um email válido.</p>
+        }
+      </div>
+
+      <div>
+        <input formControlName="password" type="password" placeholder="Palavra-passe" />
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <p class="error">A palavra-passe deve ter pelo menos 6 caracteres.</p>
+        }
+      </div>
+
+      <!-- Erro geral da API -->
+      @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" [disabled]="form.invalid || isLoading">
+        {{ isLoading ? 'A carregar...' : (isLoginMode ? 'Entrar' : 'Registar') }}
+      </button>
+
+    </form>
+
+    <!-- Toggle entre modos -->
+    <p>
+      {{ isLoginMode ? 'Ainda não tens conta?' : 'Já tens conta?' }}
+      <a (click)="toggleMode()" style="cursor:pointer; text-decoration:underline;">
+        {{ isLoginMode ? 'Criar conta' : 'Entrar' }}
+      </a>
+    </p>
+
+  </div>
+}
