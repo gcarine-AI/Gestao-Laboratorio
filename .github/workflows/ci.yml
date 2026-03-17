@@ -13,7 +13,7 @@ jobs:
 
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
     steps:
       - name: Checkout do código
@@ -42,7 +42,7 @@ jobs:
           export const environment = {
             production: false,
             supabaseUrl: '${{ env.SUPABASE_URL}}',
-            supabaseKey: '${{ env.SUPABASE_ANON_KEY}}',
+            supabaseKey: '${{ env.SUPABASE_KEY}}',
           };
           EOF
 
