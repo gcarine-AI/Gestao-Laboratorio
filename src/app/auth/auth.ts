@@ -49,20 +49,23 @@ export class Auth implements OnInit {
 
   // Submete consoante o modo atual
   async onSubmit() {
-    if (this.form.invalid) return;
+  if (this.form.invalid) return;
 
-    this.isLoading = true;
-    this.errorMessage = null;
+  this.isLoading = true;
+  this.errorMessage = null;
 
+  try {
     if (this.isLoginMode) {
       await this.signIn();
     } else {
       await this.signUp();
     }
-
+  } catch  {
+    this.errorMessage = 'Erro inesperado. Tenta novamente.';
+  } finally {
     this.isLoading = false;
   }
-
+}
   // Registo
   private async signUp() {
     const nome = this.form.get('nome')?.value!;

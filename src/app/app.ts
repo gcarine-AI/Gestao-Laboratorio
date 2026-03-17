@@ -1,46 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { environment } from '../environments/environment';
-
+import { FormsModule } from '@angular/forms';
+import { LabService } from './services/lab';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App {
+  titulo = "Gestão de Laboratório";
+  termoDePesquisa = '';
+  resultados: {tipo: string, id: number, nome: string}[] = [];
+  mostrarDropdown = false;
 
-  ngOnInit () {
-    this.loadInvestigadores();
-    this.loadProjetos();
-    this.loadEquipamentos();
+  constructor(public labService: LabService) {}
+
+  pesquisar(): void {
+    const termo = this.termoDePesquisa.toLowerCase().trim();
+    if (!termo) {
+      this.resultados = [];
+      this.mostrarDropdown = false;
+      return;
+    }
+    forkJoin({
+      investigadores: this.labService.getInvestigadores().pipe(
+        map(items => items
+          .filter(i => i.nome.toLowerCase().includes(termo) || i.id.toString().includes(termo))
+          .map(i => ({ tipo: 'investigador', id: i.id, nome: i.nome }))
+        )
+      ),
+      projetos: this.labService.getProjetos().pipe(
+        map(items => items
+          .filter(p => p.titulo.toLowerCase().includes(termo) || p.id.toString().includes(termo))
+          .map(p => ({ tipo: 'projeto', id: p.id, nome: p.titulo }))
+        )
+      ),
+      equipamentos: this.labService.getEquipamentos().pipe(
+        map(items => items
+          .filter(e => e.nome.toLowerCase().includes(termo) || e.id.toString().includes(termo))
+          .map(e => ({ tipo: 'equipamento', id: e.id, nome: e.nome }))
+        )
+      )
+    }).subscribe(result => {
+      this.resultados = [...result.investigadores, ...result.projetos, ...result.equipamentos];
+      this.mostrarDropdown = true;
+    });
   }
-  titulo = "Gestão de Laboratório"
 
-    async loadInvestigadores() {
-    const response = await fetch(environment.API_KEY + '/investigadores');
-    const investigadores = await response.json();
-
-    console.log(investigadores);
+  fecharDropDown(): void {
+    this.termoDePesquisa = '';
+    this.resultados = [];
+    this.mostrarDropdown = false;
   }
-    async loadProjetos() {
-    const response = await fetch(environment.API_KEY + '/projetos');
-    const projetos = await response.json();
-
-    console.log(projetos);
-  }
-  async loadEquipamentos() {
-    const response = await fetch(environment.API_KEY + '/equipamentos');
-    const equipamentos = await response.json();
-
-    console.log(equipamentos);
-  }
-
 }
-
-
-
-
-
-

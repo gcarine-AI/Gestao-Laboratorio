@@ -34,13 +34,16 @@ export const routes: Routes = [
     path: 'formulario/:tipo/:id',
     loadComponent: () => import('./pages/formulario/formulario').then(m => m.Formulario)
   },
+
+    {
+    path: 'auth',
+    loadComponent: () => import('./auth/auth'). then(m => m.Auth)
+  },
+  
   {
     path: '**',
     redirectTo: 'dashboard'
   },
 
-  {
-    path: 'auth',
-    loadComponent: () => import('./auth/auth'). then(m => m.Auth)
-  }
+
 ];
