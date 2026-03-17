@@ -38,8 +38,9 @@ jobs:
       - name: Generate environment.ts
         run: |
           mkdir -p src/environments
-          echo "export const environment = { production: false, supabaseURL: '${{ env.SUPABASE_URL }}', supabaseKey: '${{ env.SUPABASE_KEY }}' };" > src/environments/environment.development.ts
-
+          printf 'export const environment = { production: false, supabaseURL: "%s", supabaseKey: "%s" };\n' "$SUPABASE_URL" "$SUPABASE_KEY" > src/environments/environment.development.ts
+          cat src/environments/environment.development.ts
+          
       - name: Executar lint
         run: npm run lint
 
