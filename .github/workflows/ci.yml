@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,12 +35,7 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Generate environment.ts
-        run: |
-          mkdir -p src/environments
-          printf 'export const environment = { production: false, supabaseURL: "%s", supabaseKey: "%s" };\n' "$SUPABASE_URL" "$SUPABASE_KEY" > src/environments/environment.development.ts
-          cat src/environments/environment.development.ts
-          
+
       - name: Executar lint
         run: npm run lint
 

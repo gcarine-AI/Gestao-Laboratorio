@@ -1,1 +1,191 @@
-<p>formulario works!</p>
+<div class="pagina">
+
+  <div class="cabecalho">
+    <h1>
+      @if (modoEdicao) { ✏️ Editar } @else { ➕ Adicionar }
+      @if (tipo === 'investigador') { Investigador }
+      @else if (tipo === 'projeto') { Projeto }
+      @else if (tipo === 'equipamento') { Equipamento }
+    </h1>
+  </div>
+
+  <div class="form-card">
+    <form [formGroup]="formulario" (ngSubmit)="submeter()">
+
+      <!-- ── FORMULÁRIO DE INVESTIGADOR ── -->
+      @if (tipo === 'investigador') {
+
+        <div class="campo-grupo">
+          <label>Nome *</label>
+          <input type="text" formControlName="nome" [class.invalido]="terminalErros('nome', 'required') || terminalErros('nome', 'minlength')" placeholder="Nome completo" />
+          @if (terminalErros('nome', 'required')) {
+            <span class="erro">O nome é obrigatório.</span>
+          }
+          @if (terminalErros('nome', 'minlength')) {
+            <span class="erro">O nome deve ter pelo menos 3 caracteres.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Email *</label>
+          <input type="email" formControlName="email" [class.invalido]="terminalErros('email', 'required') || terminalErros('email', 'email')" placeholder="email@lab.pt" />
+          @if (terminalErros('email', 'required')) {
+            <span class="erro">O email é obrigatório.</span>
+          }
+          @if (terminalErros('email', 'email')) {
+            <span class="erro">Introduz um email válido.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Especialidade *</label>
+          <input type="text" formControlName="especialidade" [class.invalido]="terminalErros('especialidade', 'required')" placeholder="Ex: Bioquímica" />
+          @if (terminalErros('especialidade', 'required')) {
+            <span class="erro">A especialidade é obrigatória.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Estado *</label>
+          <select formControlName="activo">
+            <option [value]="true">Activo</option>
+            <option [value]="false">Inativo</option>
+          </select>
+        </div>
+
+        <div class="campo-grupo">
+          <label>Data de Registo *</label>
+          <input type="date" formControlName="dataCriacao" [class.invalido]="terminalErros('dataCriacao', 'required')" />
+          @if (terminalErros('dataCriacao', 'required')) {
+            <span class="erro">A data é obrigatória.</span>
+          }
+        </div>
+      }
+
+      <!-- ── FORMULÁRIO DE PROJETO ── -->
+      @if (tipo === 'projeto') {
+
+        <div class="campo-grupo">
+          <label>Título *</label>
+          <input type="text" formControlName="titulo" [class.invalido]="terminalErros('titulo', 'required') || terminalErros('titulo', 'minlength')" placeholder="Título do projeto" />
+          @if (terminalErros('titulo', 'required')) {
+            <span class="erro">O título é obrigatório.</span>
+          }
+          @if (terminalErros('titulo', 'minlength')) {
+            <span class="erro">O título deve ter pelo menos 3 caracteres.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Descrição *</label>
+          <textarea formControlName="descricao" [class.invalido]="terminalErros('descricao', 'required') || terminalErros('descricao', 'minlength')" placeholder="Descrição detalhada do projeto..." rows="3"></textarea>
+          @if (terminalErros('descricao', 'required')) {
+            <span class="erro">A descrição é obrigatória.</span>
+          }
+          @if (terminalErros('descricao', 'minlength')) {
+            <span class="erro">A descrição deve ter pelo menos 10 caracteres.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Área *</label>
+          <input type="text" formControlName="area" [class.invalido]="terminalErros('area', 'required')" placeholder="Ex: Bioquímica" />
+          @if (terminalErros('area', 'required')) {
+            <span class="erro">A área é obrigatória.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Estado *</label>
+          <select formControlName="estado">
+            <option value="Em curso">Em Curso</option>
+            <option value="Concluído">Concluído</option>
+            <option value="Em pausa">Em pausa</option>
+          </select>
+        </div>
+
+        <div class="campo-grupo">
+          <label>Data de Início *</label>
+          <input type="date" formControlName="dataInicio" [class.invalido]="terminalErros('dataInicio', 'required')" />
+          @if (terminalErros('dataInicio', 'required')) {
+            <span class="erro">A data é obrigatória.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>ID do Investigador *</label>
+          <input type="number" formControlName="investigadorId" [class.invalido]="terminalErros('investigadorId', 'required') || terminalErros('investigadorId', 'idInvalido')" placeholder="Ex: 1" />
+          @if (terminalErros('investigadorId', 'required')) {
+            <span class="erro">O ID do investigador é obrigatório.</span>
+          }
+          @if (terminalErros('investigadorId', 'idInvalido')) {
+            <span class="erro">O ID tem de ser um número positivo.</span>
+          }
+        </div>
+      }
+
+      <!-- ── FORMULÁRIO DE EQUIPAMENTO ── -->
+      @if (tipo === 'equipamento') {
+
+        <div class="campo-grupo">
+          <label>Nome *</label>
+          <input type="text" formControlName="nome" [class.invalido]="terminalErros('nome', 'required') || terminalErros('nome', 'minlength')" placeholder="Nome do equipamento" />
+          @if (terminalErros('nome', 'required')) {
+            <span class="erro">O nome é obrigatório.</span>
+          }
+          @if (terminalErros('nome', 'minlength')) {
+            <span class="erro">O nome deve ter pelo menos 3 caracteres.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Tipo *</label>
+          <input type="text" formControlName="tipo" [class.invalido]="terminalErros('tipo', 'required')" placeholder="Ex: Ótico, Mecânico" />
+          @if (terminalErros('tipo', 'required')) {
+            <span class="erro">O tipo é obrigatório.</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Estado *</label>
+          <select formControlName="estado">
+            <option value="Disponível">Disponível</option>
+            <option value="Em uso">Em Uso</option>
+            <option value="Em manutenção">Em Manutenção</option>
+          </select>
+        </div>
+
+        <div class="campo-grupo">
+          <label>Localização * <small>(deve conter "Sala")</small></label>
+          <input type="text" formControlName="localizacao" [class.invalido]="terminalErros('localizacao', 'required') || terminalErros('localizacao', 'localizacaoInvalida')" placeholder="Ex: Sala A1" />
+          @if (terminalErros('localizacao', 'required')) {
+            <span class="erro">A localização é obrigatória.</span>
+          }
+          @if (terminalErros('localizacao', 'localizacaoInvalida')) {
+            <span class="erro">A localização deve conter a palavra "Sala".</span>
+          }
+        </div>
+
+        <div class="campo-grupo">
+          <label>Data de Aquisição *</label>
+          <input type="date" formControlName="dataAquisicao" [class.invalido]="terminalErros('dataAquisicao', 'required')" />
+          @if (terminalErros('dataAquisicao', 'required')) {
+            <span class="erro">A data é obrigatória.</span>
+          }
+        </div>
+      }
+
+      <!-- BOTÕES -->
+      <div class="botoes">
+        <button type="submit" class="btn-guardar">
+          💾 Guardar
+        </button>
+        <button type="button" class="btn-cancelar" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

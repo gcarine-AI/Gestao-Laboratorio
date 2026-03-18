@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Investigador } from '../../models/investigador.model';
@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 export class Detalhe implements OnInit {
   private route = inject(ActivatedRoute);
   private labService = inject(LabService);
+  private cdr = inject(ChangeDetectorRef)
 
   tipo = '';
   item: Investigador | Projeto | Equipamento | null = null;
@@ -27,14 +28,17 @@ export class Detalhe implements OnInit {
     if (this.tipo === 'investigador') {
       this.labService.getInvestigadoresById(id).subscribe(inv => {
         this.item = inv;
+        this.cdr.detectChanges();
       });
     } else if (this.tipo === 'projeto') {
       this.labService.getProjetosById(id).subscribe(proj => {
         this.item = proj;
+        this.cdr.detectChanges();
       });
     } else if (this.tipo === 'equipamento') {
       this.labService.getEquipamentosById(id).subscribe(equip => {
         this.item = equip;
+        this.cdr.detectChanges();
       });
     }
   }

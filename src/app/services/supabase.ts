@@ -12,6 +12,8 @@ export class Supabase {
   private client: SupabaseClient;
 
   constructor() {
+    console.log('URL:', environment.supabaseURL);
+    console.log('KEY:', environment.supabaseKey ? 'existe' : 'vazia!');
     this.client = createClient(
       environment.supabaseURL,
       environment.supabaseKey
