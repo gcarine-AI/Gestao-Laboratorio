@@ -12,7 +12,7 @@ jobs:
 
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
     steps:
       - name: Checkout do código
@@ -40,7 +40,7 @@ jobs:
           cat > src/environments/environment.ts <<EOF
           export const environment = {
             production: true,
-            supabaseUrl: '${SUPABASE_URL}',
+            supabaseURL: '${SUPABASE_URL}',
             supabaseKey: '${SUPABASE_ANON_KEY}',
           };
           EOF
