@@ -35,6 +35,17 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Generate environment.ts
+        run: |
+          mkdir -p src/environments
+          cat > src/environments/environment.ts <<EOF
+          export const environment = {
+            production: true,
+            supabaseUrl: '${SUPABASE_URL}',
+            supabaseKey: '${SUPABASE_ANON_KEY}',
+          };
+          EOF
+
 
       - name: Executar lint
         run: npm run lint
