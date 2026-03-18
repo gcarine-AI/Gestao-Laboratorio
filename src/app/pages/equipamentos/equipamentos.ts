@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Equipamento } from '../../models/equipamento.model';
@@ -12,6 +12,7 @@ import { StatusPipe } from '../../pipes/status-pipe';
 })
 export class Equipamentos implements OnInit {
   private labService = inject(LabService);
+  private cdr = inject(ChangeDetectorRef)
 
   equipamentos: Equipamento[] = [];
   equipamentosFiltrados: Equipamento[] = [];
@@ -27,6 +28,7 @@ export class Equipamentos implements OnInit {
     this.labService.getEquipamentos().subscribe(dados=> {
       this.equipamentos = dados;
        this.aplicarFiltros();
+       this.cdr.detectChanges();
     });
   }
 

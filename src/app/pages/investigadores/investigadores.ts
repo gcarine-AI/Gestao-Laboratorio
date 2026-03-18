@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Investigador } from '../../models/investigador.model';
@@ -11,6 +11,7 @@ import { Investigador } from '../../models/investigador.model';
 })
 export class Investigadores implements OnInit {
   private labService = inject(LabService);
+  private cdr = inject(ChangeDetectorRef)
 
   investigadores: Investigador[] = [];
   investigadoresFiltrados: Investigador[] = [];
@@ -26,6 +27,7 @@ export class Investigadores implements OnInit {
     this.labService.getInvestigadores().subscribe(dados => {
       this.investigadores = dados;
       this.aplicarFiltros()
+      this.cdr.detectChanges();
     });
   }
 

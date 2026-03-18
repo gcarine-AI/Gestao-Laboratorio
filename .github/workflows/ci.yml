@@ -13,11 +13,11 @@ jobs:
 
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,16 +35,6 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Generate environment.ts
-        run: |
-          mkdir -p src/environments
-          cat > src/environments/environment.development.ts <<EOF
-          export const environment = {
-            production: false,
-            supabaseUrl: '${{ env.SUPABASE_URL}}',
-            supabaseKey: '${{ env.SUPABASE_ANON_KEY}}',
-          };
-          EOF
 
       - name: Executar lint
         run: npm run lint

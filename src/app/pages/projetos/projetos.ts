@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LabService } from '../../services/lab';
 import { Projeto } from '../../models/projeto.model';
@@ -12,6 +12,7 @@ import { StatusPipe } from '../../pipes/status-pipe';
 })
 export class Projetos implements OnInit {
   private labService = inject(LabService);
+  private cdr = inject(ChangeDetectorRef)
 
   projetos: Projeto[] = [];
   projetosFiltrados: Projeto[] = [];
@@ -27,6 +28,7 @@ export class Projetos implements OnInit {
     this.labService.getProjetos().subscribe(dados => {
       this.projetos = dados
       this.aplicarFiltros()
+      this.cdr.detectChanges();
     });
   }
 
