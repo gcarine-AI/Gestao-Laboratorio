@@ -1,68 +1,65 @@
-# LabGestao
+LabGestao - Sistema de Gestão de um Laboratório de Investigação
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+Este projeto foi feito com recurso às tecnologias: Angular CLI version 21.2.0. [TypeScript] (Strict mode) [HTML5] [CSS3]
 
-## Development server
+Aluno
 
-To start a local development server, run:
+Nome: Carine Gonçalves Disciplina: Programação em JavaScript Curso: UpSkill ServiceNow
 
-```bash
+Descrição
+
+Projeto Final da disciplina que compreende uma aplicação Single Page Application (SPA) desenvolvida em Angular para gerir os recursos de um laboratório de investigação científica.
+
+Funcionalidades
+
+--> Dashboard - com KPIs em tempo real (investigadores, projetos e equipamentos); --> CRUD - Gestão de Investigadores: listar, pesquisar, filtrar, criar, editar e apagar; - Gestão de Projetos: listar, pesquisar, filtrar por estado, criar, editar e apagar; - Gestão de Equipamentos: listar, pesquisar, filtrar por estado, criar, editar e apagar; --> pagina de Detalhe - para cada item com rota dinâmica '/detalhe/:tipo/:id'; --> Formulário - para criação e edição com validações e feedback visual --> Persistência de dados - via localStorage
+
+Para correr o projeto
+
+Pre-Requisitos:
+
+Node js Angular CLI ("npm install -g @angular/cli")
+
+Instalação
+
+- clonar o repositório
+
+git clone https://github.com/gcarine-AI/Gestao-Laboratorio.git
+
+entrar na pasta:
+cd lab-gestao
+
+instalar dependências:
+npm install
+
+correr a aplicação:
 ng serve
-```
+Abrir o browser e navegar em http://localhost:4200/
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
+Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
 ng generate component component-name
-```
+For a complete list of available schematics (such as components, directives, or pipes), run:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
 ng generate --help
-```
+Running unit tests
 
-## Building
+To execute unit tests with the Vitest test runner, use the following command:
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
 ng test
-```
+Estrutura do Projeto
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
-image base
-Projeto - copiar - imagem (nova)
-export porta 4200
-iniciar contentor com binding das portas
-instalar angular cli
-correr webserver
-aceder de fora do container
+src/app/
+├── models/          → Interfaces TypeScript
+├── services/        → Lógica de negócio e LocalStorage
+├── components/      → Componentes reutilizáveis (Card)
+├── pages/           → Páginas da aplicação
+│   ├── dashboard/
+│   ├── investigadores/
+│   ├── projetos/
+│   ├── equipamentos/
+│   ├── detalhe/
+│   └── formulario/
+└── pipes/           → StatusPipe (formatação de estados)
