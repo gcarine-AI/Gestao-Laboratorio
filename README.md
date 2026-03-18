@@ -1,59 +1,69 @@
-LabGestao - Sistema de Gestão de um Laboratório de Investigação
 
-Este projeto foi feito com recurso às tecnologias: Angular CLI version 21.2.0. [TypeScript] (Strict mode) [HTML5] [CSS3]
+=======
+# LabGestão - Sistema de Gestão de um Laboratório de Investigação
 
-Aluno
+## Tecnologias
+- Angular CLI 21.2.0 | TypeScript | HTML5 | CSS3
+- Supabase (base de dados e autenticação)
+- Docker + Nginx
+- GitHub Actions (CI/CD)
+- Vercel (deploy automático)
 
-Nome: Carine Gonçalves Disciplina: Programação em JavaScript Curso: UpSkill ServiceNow
+## Aluno
+**Nome:** Carine Gonçalves
+**Disciplina:** Integração de Processos
+**Curso:** UpSkill ServiceNow
 
-Descrição
+## Descrição
+Aplicação SPA desenvolvida em Angular para gerir os recursos de um laboratório de investigação científica, com autenticação, base de dados real e pipeline CI/CD completo.
 
-Projeto Final da disciplina que compreende uma aplicação Single Page Application (SPA) desenvolvida em Angular para gerir os recursos de um laboratório de investigação científica.
+## Funcionalidades
+- 🔐 Autenticação — login e registo via Supabase Auth
+- 🏠 Dashboard — KPIs em tempo real
+- 👩‍🔬 Gestão de Investigadores — listar, pesquisar, filtrar, criar, editar e apagar
+- 📋 Gestão de Projetos — listar, pesquisar, filtrar, criar, editar e apagar
+- 🔧 Gestão de Equipamentos — listar, pesquisar, filtrar, criar, editar e apagar
+- 📄 Detalhe — rota dinâmica `/detalhe/:tipo/:id`
+- 📝 Formulário — criação e edição com validações e feedback visual
+- 🔍 Pesquisa global na navbar
 
-Funcionalidades
+## Aplicação em Produção
+🌐 [gestao-laboratoriovercel.vercel.app](https://gestao-laboratoriovercel.vercel.app)
 
---> Dashboard - com KPIs em tempo real (investigadores, projetos e equipamentos); --> CRUD - Gestão de Investigadores: listar, pesquisar, filtrar, criar, editar e apagar; - Gestão de Projetos: listar, pesquisar, filtrar por estado, criar, editar e apagar; - Gestão de Equipamentos: listar, pesquisar, filtrar por estado, criar, editar e apagar; --> pagina de Detalhe - para cada item com rota dinâmica '/detalhe/:tipo/:id'; --> Formulário - para criação e edição com validações e feedback visual --> Persistência de dados - via localStorage
+## Correr com Docker
+```bash
+docker build -t lab-gestao .
+docker run -p 8080:80 lab-gestao
+```
+Abre o browser em `http://localhost:8080`
 
-Para correr o projeto
-
-Pre-Requisitos:
-
-Node js Angular CLI ("npm install -g @angular/cli")
-
-Instalação
-
-- clonar o repositório
-
+## Correr localmente
+**Pré-Requisitos:** Node.js | Angular CLI
+```bash
+# Clonar o repositório
 git clone https://github.com/gcarine-AI/Gestao-Laboratorio.git
-
-entrar na pasta:
 cd lab-gestao
 
-instalar dependências:
+# Instalar dependências
 npm install
 
-correr a aplicação:
+# Correr a aplicação
 ng serve
-Abrir o browser e navegar em http://localhost:4200/
+```
+Abre o browser em `http://localhost:4200`
 
-Code scaffolding
+## CI/CD
+- **CI:** GitHub Actions corre lint e build automaticamente em cada Pull Request
+- **CD:** Vercel faz deploy automático quando há merge na branch `develop-idp`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-ng generate component component-name
-For a complete list of available schematics (such as components, directives, or pipes), run:
-
-ng generate --help
-Running unit tests
-
-To execute unit tests with the Vitest test runner, use the following command:
-
-ng test
-Estrutura do Projeto
-
+## Estrutura do Projeto
+```
 src/app/
+├── auth/            → Componente de autenticação
+├── guards/          → Auth Guard para proteção de rotas
 ├── models/          → Interfaces TypeScript
-├── services/        → Lógica de negócio e LocalStorage
+├── services/        → LabService (Supabase) + SupabaseService
+>>>>>>> e15fc18 (feature README atualizado)
 ├── components/      → Componentes reutilizáveis (Card)
 ├── pages/           → Páginas da aplicação
 │   ├── dashboard/
@@ -62,4 +72,5 @@ src/app/
 │   ├── equipamentos/
 │   ├── detalhe/
 │   └── formulario/
-└── pipes/           → StatusPipe (formatação de estados)
+└── pipes/           → StatusPipe
+```
