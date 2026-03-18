@@ -1,3 +1,5 @@
+[![CI](https://github.com/gcarine-AI/Gestao-Laboratorio/actions/workflows/ci.yml/badge.svg)](https://github.com/gcarine-AI/Gestao-Laboratorio/actions/workflows/ci.yml) 
+
 # LabGestao - Sistema de Gestão de um Laboratório de Investigação
 
 Este projeto foi feito com recurso às tecnologias:
