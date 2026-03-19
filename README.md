@@ -1,4 +1,4 @@
-[![CI](https://github.com/gcarine-AI/lab-gestao/actions/workflows/ci.yml/badge.svg)](https://github.com/gcarine-AI/lab-gestao/actions/work
+[![CI](https://github.com/gcarine-AI/Gestao-Laboratorio/actions/workflows/ci.yml/badge.svg)](https://github.com/gcarine-AI/Gestao-Laboratorio/actions/workflows/ci.yml)
 # LabGestão - Sistema de Gestão de um Laboratório de Investigação
 
 ## Tecnologias
