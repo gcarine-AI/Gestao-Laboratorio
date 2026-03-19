@@ -113,4 +113,5 @@ export class Auth implements OnInit {
     const { data } = await this.supaBase.getClient().auth.getUser();
     this.currentUser = data.user?.email ?? null;
   }
+
 }
