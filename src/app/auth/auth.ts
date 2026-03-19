@@ -112,7 +112,6 @@ export class Auth implements OnInit {
   async getCurrentUser() {
     const { data } = await this.supaBase.getClient().auth.getUser();
     this.currentUser = data.user?.email ?? null;
-    let xyz = 124;
   }
 
 }
