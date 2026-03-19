@@ -1,5 +1,4 @@
 
-=======
 # LabGestão - Sistema de Gestão de um Laboratório de Investigação
 
 ## Tecnologias
@@ -63,7 +62,6 @@ src/app/
 ├── guards/          → Auth Guard para proteção de rotas
 ├── models/          → Interfaces TypeScript
 ├── services/        → LabService (Supabase) + SupabaseService
->>>>>>> e15fc18 (feature README atualizado)
 ├── components/      → Componentes reutilizáveis (Card)
 ├── pages/           → Páginas da aplicação
 │   ├── dashboard/
